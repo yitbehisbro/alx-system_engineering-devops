@@ -9,12 +9,12 @@
 <p><strong>Read or watch</strong>:</p>
 
 <ul>
-<li><a href="/rltoken/oXnzBjLBA9t9dr7WuftdmQ" title="Expansions" target="_blank">Expansions</a> </li>
-<li><a href="/rltoken/PLSUQnBcKKU5eEgRfRDlug" title="Shell Arithmetic" target="_blank">Shell Arithmetic</a> </li>
-<li><a href="/rltoken/SvdGNZJjKsPghzZEhaWu4Q" title="Variables" target="_blank">Variables</a> </li>
-<li><a href="/rltoken/tqud57kjsSYgDfeZDlwl3g" title="Shell initialization files" target="_blank">Shell initialization files</a> </li>
-<li><a href="/rltoken/zCemKQ8f1CxmODIs9dmcWg" title="The alias Command" target="_blank">The alias Command</a> </li>
-<li><a href="/rltoken/wYrZr3t3DeAE8PpYHYWGiw" title="Technical Writing" target="_blank">Technical Writing</a></li>
+<li><a href="http://linuxcommand.org/lc3_lts0080.php" title="Expansions" target="_blank">Expansions</a> </li>
+<li><a href="https://www.gnu.org/software/bash/manual/html_node/Shell-Arithmetic.html" title="Shell Arithmetic" target="_blank">Shell Arithmetic</a> </li>
+<li><a href="https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_02.html" title="Variables" target="_blank">Variables</a> </li>
+<li><a href="https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_01.html" title="Shell initialization files" target="_blank">Shell initialization files</a> </li>
+<li><a href="http://www.linfo.org/alias.html" title="The alias Command" target="_blank">The alias Command</a> </li>
+<li><a href="https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/misc/2021/6/9112669886fd446a2aa3113c31319d1f468dc160.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20220628%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220628T091516Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=3545d6b027220690ba395b8e84f43373917dee42564aba028d6ee9b9e006f6df" title="Technical Writing" target="_blank">Technical Writing</a></li>
 </ul>
 
 <p><strong>man or help</strong>:</p>
