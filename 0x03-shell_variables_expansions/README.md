@@ -3,6 +3,8 @@
 <body>
 <article class="">
 <h1>0x03. Shell, init files, variables and expansions</h1>
+<h2>About Bash projects</h2>
+<p>Unless stated, all your projects will be auto-corrected with Ubuntu 20.04 LTS.</p>
   <div class="panel-body">
     <h2>Resources</h2>
 
