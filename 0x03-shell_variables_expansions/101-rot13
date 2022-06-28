@@ -1,0 +1,2 @@
+#!/bin/bash
+alias rot13="tr 'A-Za-z0-9' 'K-ZA-J5-9k-za-j'" | rot13
