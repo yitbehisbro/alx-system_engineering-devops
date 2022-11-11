@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# manages the daemons or background processes
+PID_PATH=/var/run/my_process.pid
+
+start()
+{
+	./manage_my_process &
+	echo "$!" > "$PID_PATH"
+}
+restart()
+{
+	./manage_my_process &
+	rm -rf "$PID_PATH"
+	echo "$!" > "$PID_PATH"
+}
+stop()
+{
+	sudo kill -15 "$(cat "$PID_PATH")" &&
+	rm -f "$PID_PATH"
+}
+
+case "$1" in
+	start)
+		start
+		echo "manage_my_process started"
+		;;
+	restart)
+		restart
+		echo "manage_my_process restarted"
+		;;
+	stop)
+		stop
+		echo "manage_my_process stopped"
+		;;
+	*)
+		echo "Usage: manage_my_process {start|stop|restart}"
+		;;
+esac
+
+exit 0
