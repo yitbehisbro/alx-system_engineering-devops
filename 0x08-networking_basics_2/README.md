@@ -7,7 +7,6 @@
 <ul>
 <li><code>localhost</code> resolves to <code>127.0.0.2</code></li>
 <li> <code>facebook.com</code> resolves to <code>8.8.8.8</code>.</li>
-<li> The checker is running on Docker, so make sure to read <a href="http://blog.jonathanargentiero.com/docker-sed-cannot-rename-etcsedl8ysxl-device-or-resource-busy/" title="this" target="_blank">this</a></li>
 </ul>
 <p>1. Write a Bash script that displays all active IPv4 IPs on the machine it’s executed on.</p>
 
