@@ -1,3 +1,6 @@
+#kill the process
+
+
 exec { 'pkill killmenow':
   path     => '/usr/bin',
   provider => shell,
