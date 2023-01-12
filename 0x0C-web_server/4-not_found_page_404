@@ -13,9 +13,11 @@ sudo touch /var/www/html/error_404.html
 sudo chown "$USER" /var/www/html/error_404.html
 echo "Ceci n'est pas une page" > /var/www/html/error_404.html
 
-# Updating the default setting so that the error page display right away
-sudo sed -i 's/location \/ {/error_page 404 \/error_404.html;\n\tlocation \= \/error_404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;/g' /etc/nginx/sites-enabled/default
-sudo sed -i 's/try_files \$uri \$uri\/ \=404;/##/g' /etc/nginx/sites-enabled/default
+# Creating a configration for default site
+sudo chown "$USER" /etc/nginx/sites-enabled/default
+echo -e "server {\n\tlisten 80 default_server;\n\tlisten [::]:80 default_server;\n\n\troot /var/www/html;\n\n\tindex index.html index.htm index.nginx-debian.html;\n" > /etc/nginx/sites-enabled/default
+echo -e "\n\n\tserver_name _;\n\trewrite ^/redirect_me/(.*)$ https://youtu.be/Lc-vINJmhNk$1 permanent;" >> /etc/nginx/sites-enabled/default
+echo -e "\n\n\terror_page 404 /error_404.html;\n\tlocation = /error_404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\n\t}\n}" >> /etc/nginx/sites-enabled/default
 
 # Starts the nginx servers
 sudo service nginx start
