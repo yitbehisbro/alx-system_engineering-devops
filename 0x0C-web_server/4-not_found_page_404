@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# A custom 404 page
+sudo apt update
+sudo apt -y install nginx
+sudo chown "$USER" /var/www/html/index.nginx-debian.html
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+
+# 301 Moved Permanently
+sudo sed -i 's/server_name _;/server_name _;\n\trewrite \^\/redirect_me\/(.*)\$ https:\/\/youtu.be\/Lc-vINJmhNk\$1 permanent;/g' /etc/nginx/sites-enabled/default
+
+# Creates custom error message for 404
+sudo -i sed 's/location \/ {/error_page 404 \/error_404.html;\n\tlocation \= \/error_404.html {\n\t\troot \/var\/www\/html;\n/g' /etc/nginx/sites-enabled/default
+sudo -i sed 's/try_files \$uri \$uri\/ \=404;/internal;/g' /etc/nginx/sites-enabled/default
+
+# Starts the nginx servers
+sudo service nginx start
