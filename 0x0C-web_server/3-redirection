@@ -2,9 +2,7 @@
 #301 Moved Permanently
 sudo apt update
 sudo apt -y install nginx
-sudo chown $USER /var/www/html/index.nginx-debian.html
-sudo echo "Hello World!" > /var/www/html/index.nginx-debian.html
-sudo service nginx start
-
+sudo chown "$USER" /var/www/html/index.nginx-debian.html
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
 sudo sed -i 's/server_name _;/server_name _;\n\trewrite \^\/redirect_me\/(.*)\$ https:\/\/youtu.be\/Lc-vINJmhNk\$1 permanent;/g' /etc/nginx/sites-enabled/default
-sudo nginx -s reload
+sudo service nginx start
