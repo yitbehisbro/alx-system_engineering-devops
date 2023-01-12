@@ -14,8 +14,8 @@ sudo chown "$USER" /var/www/html/error_404.html
 echo "Ceci n'est pas une page" > /var/www/html/error_404.html
 
 # Updating the default setting so that the error page display right away
-sudo sed -i 's/location \/ {/error_page 404 \/error_404.html;\n\tlocation \= \/error_404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;/g' /etc/nginx/sites-enabled/default
-sudo sed -i 's/try_files \$uri \$uri\/ \=404;/##/g' /etc/nginx/sites-enabled/default
+sudo sed -i 's/location \/ {/error_page 404 \/error_404.html;\n\tlocation \= \/error_404.html {\n\t\troot \/var\/www\/html;/g' /etc/nginx/sites-enabled/default
+sudo sed -i 's/try_files \$uri \$uri\/ \=404;/internal;/g' /etc/nginx/sites-enabled/default
 
 # Starts the nginx servers
 sudo service nginx start
