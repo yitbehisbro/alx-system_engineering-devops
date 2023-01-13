@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 #301 Moved Permanently
-sudo apt -y remove nginx
 sudo apt update
 sudo apt -y install nginx
 sudo chown "$USER" /var/www/html/index.nginx-debian.html
