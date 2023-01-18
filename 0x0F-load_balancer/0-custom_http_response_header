@@ -19,9 +19,17 @@ echo -e "server {\n\tlisten 80 default_server;\n\tlisten [::]:80 default_server;
 echo -e "\n\n\tserver_name _;\n\trewrite ^/redirect_me/(.*)$ https://youtu.be/Lc-vINJmhNk$1 permanent;" >> /etc/nginx/sites-enabled/default
 echo -e "\n\n\terror_page 404 /error_404.html;\n\tlocation = /error_404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\n\t}\n}" >> /etc/nginx/sites-enabled/default
 
+# Install more_set_headers to handle the change of response header if the request passes to other servers via proxy_pass directive.
+sudo wget 'http://nginx.org/download/nginx-1.17.8.tar.gz'
+sudo tar -xzvf nginx-1.17.8.tar.gz
+cd nginx-1.17.8/
+sudo ./configure --prefix=/opt/nginx --add-module=/path/to/headers-more-nginx-module
+sudo make
+sudo make install
+
 # Configure Nginx so that its HTTP response contains a custom header (on web-01 and web-02)
 sudo chown "$USER" /etc/nginx/nginx.conf
-sudo sed -i -e "s/http {/http {\n\n\t##\n\t# Customized header response message to identify the responding servers\n\t##\n\n\tadd_header X-Served-By $HOSTNAME;\n/" /etc/nginx/nginx.conf
+sudo sed -i -e "s/http {/http {\n\n\t##\n\t# Customized header response message to identify the responding servers\n\t##\n\n\tmore_set_headers 'X-Served-By:$HOSTNAME';\n/" /etc/nginx/nginx.conf
 
 # Starts the nginx servers
 sudo service nginx start
