@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
 # Sets a response header for the different servers
+sudo apt update
+sudo apt -y install nginx
+sudo chown "$USER" /var/www/html/index.nginx-debian.html
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+
+# 301 Moved Permanently
+sudo sed -i 's/server_name _;/server_name _;\n\trewrite \^\/redirect_me\/(.*)\$ https:\/\/youtu.be\/Lc-vINJmhNk\$1 permanent;/g' /etc/nginx/sites-enabled/default
+
+# Creates custom error message for 404
+sudo touch /var/www/html/error_404.html
+sudo chown "$USER" /var/www/html/error_404.html
+echo "Ceci n'est pas une page" > /var/www/html/error_404.html
+
+# Creating a configration for default site
+sudo chown "$USER" /etc/nginx/sites-enabled/default
+echo -e "server {\n\tlisten 80 default_server;\n\tlisten [::]:80 default_server;\n\n\troot /var/www/html;\n\n\tindex index.html index.htm index.nginx-debian.html;\n" > /etc/nginx/sites-enabled/default
+echo -e "\n\n\tserver_name _;\n\trewrite ^/redirect_me/(.*)$ https://youtu.be/Lc-vINJmhNk$1 permanent;" >> /etc/nginx/sites-enabled/default
+echo -e "\n\n\terror_page 404 /error_404.html;\n\tlocation = /error_404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\n\t}\n}" >> /etc/nginx/sites-enabled/default
+
+# Configure Nginx so that its HTTP response contains a custom header (on web-01 and web-02)
 sudo chown "$USER" /etc/nginx/nginx.conf
 sudo sed -i -e "s/http {/http {\n\n\t##\n\t# Customized header response message to identify the responding servers\n\t##\n\n\tadd_header X-Served-By $HOSTNAME;\n/" /etc/nginx/nginx.conf
-sudo service nginx restart
+
+# Starts the nginx servers
+sudo service nginx start
