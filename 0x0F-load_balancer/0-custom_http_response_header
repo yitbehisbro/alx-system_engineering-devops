@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Sets a response header for the different servers
+sudo chown "$USER" /etc/nginx/nginx.conf
+sudo sed -i -e "s/http {/http {\n\n\t##\n\t# Customized header response message to identify the responding servers\n\t##\n\n\tadd_header X-Served-By $HOSTNAME;\n/" /etc/nginx/nginx.conf
+sudo service nginx restart
