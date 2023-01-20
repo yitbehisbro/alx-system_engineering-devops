@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Pave a way for an nginx to listen at port 80
-sudo apt -y update
-sudo apt -y install net-tools
 sudo lsof -t -i tcp:80 -s tcp:listen | sudo xargs kill
+sed -i "s/ ipv6only=on//" /etc/nginx/sites-available/default
 sudo service nginx start
