@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Pave a way for an nginx to listen at port 80
 sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-sudo service nginx restar
+sudo service nginx restart
