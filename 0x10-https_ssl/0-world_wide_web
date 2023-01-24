@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Display information about subdomains
+
+display_all() {
+	dig www."$1" | grep -A1 'ANSWER SECTION:' | grep IN | awk '{ print "The subdomain www is a " $4 " record and points to " $5 }'
+	dig lb-01."$1" | grep -A1 'ANSWER SECTION:' | grep IN | awk '{ print "The subdomain lb-01 is a " $4 " record and points to " $5 }'
+	dig web-01."$1" | grep -A1 'ANSWER SECTION:' | grep IN | awk '{ print "The subdomain web-01 is a " $4 " record and points to " $5 }'
+	dig web-02."$1" | grep -A1 'ANSWER SECTION:' | grep IN | awk '{ print "The subdomain web-02 is a " $4 " record and points to " $5 }'
+}
+
+display_single() {
+	dig "$2"."$1" A | grep -A1 'ANSWER SECTION:' | grep IN | awk -v SD="$2" '{ print "The subdomain " SD " is a " $4 " record and points to " $5 }'
+}
+
+if [ "$#" -eq 1 ]
+then
+        display_all "$1" "$2"
+elif [ "$#" -gt 1 ]
+then
+	display_single "$1" "$2"
+else
+	echo "Usage: [DOMAIN] [SUB_DOMAIN]"
+fi
