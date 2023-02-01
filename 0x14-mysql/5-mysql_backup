@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Back archives for the all databases
+DATE=$(date -I | sed 's/-/ /g' | awk '{print $3 "-" $2 "-" $1 }')
+
+if [ "$#" -eq 1 ]
+then
+	touch backup.sql
+	chown "$USER" backup.sql
+	mysqldump -uroot -p"$1" --all-databases > backup.sql
+	tar -czvf "${DATE}".tar.gz backup.sql
+fi
