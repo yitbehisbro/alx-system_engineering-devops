@@ -2,5 +2,5 @@
 # Run the command as another user
 if [ "$#" -eq 1 ]
 then
-	runuser -l  "$1" -c "whoami"
+	sudo -u  "$1" "whoami"
 fi
