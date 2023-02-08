@@ -21,5 +21,5 @@ if __name__ == "__main__":
     request = requests.get(url)
     value = request.json()
     emp = value.get('name')
-    print("Employee {} is done with tasks({}/{})".format(emp, done, counter))
+    print("Employee {} is done with tasks({}/{}):".format(emp, done, counter))
     print("{}".format(tasks), end="")
