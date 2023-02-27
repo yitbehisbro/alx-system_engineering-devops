@@ -15,13 +15,16 @@ def get_posts(response):
 
 def top_ten(subreddit):
     """ Returns top 10 posts """
-    auth = requests.auth.HTTPBasicAuth('LqbShrCIO2ZLZQRZt7s6Fg', 'RpCwbohdiD_6h2KLPVU_y-_TJCSMZQ')
+    client = 'LqbShrCIO2ZLZQRZt7s6Fg'
+    secret = 'RpCwbohdiD_6h2KLPVU_y-_TJCSMZQ'
+    url = 'https://www.reddit.com/api/v1/access_token'
+    auth = requests.auth.HTTPBasicAuth(client, secret)
     data = {'grant_type': 'password',
             'username': 'yitbehisbro',
             'password': 'Yitbe1234%'}
 
     headers = {'User-Agent': 'PPP/0.0.1'}
-    res = requests.post('https://www.reddit.com/api/v1/access_token', auth=auth, data=data, headers=headers)
+    res = requests.post(url, auth=auth, data=data, headers=headers)
     TOKEN = res.json()['access_token']
     headers = {**headers, **{'Authorization': f"bearer {TOKEN}"}}
     params = {'limit': 10}
