@@ -2,15 +2,15 @@
 """ Get top 10 hot posts """
 import requests
 
-
+"""
 def get_posts(response):
-    """ Gets the posts """
+
     posts = []
 
     for post in response.json().get('data').get('children'):
         posts.append(post.get('data').get('title'))
 
-    return posts
+    return posts """
 
 
 def top_ten(subreddit):
@@ -28,15 +28,17 @@ def top_ten(subreddit):
     TOKEN = res.json()['access_token']
     headers = {**headers, **{'Authorization': f"bearer {TOKEN}"}}
     params = {'limit': 10}
-    title = ""
-
     url = "https://oauth.reddit.com/r/{}/top/?t=10".format(subreddit)
+    posts = []
+
     for i in range(1):
         res = requests.get(url, headers=headers, params=params)
         if res.status_code != 200 or res.status_code == 301:
             print("None")
             return
-        posts = get_posts(res)
+        for post in res.json().get('data').get('children'):
+            posts.append(post.get('data').get('title'))
+        # posts = get_posts(res)
 
     for title in posts:
         print(title)
