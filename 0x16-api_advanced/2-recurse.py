@@ -8,13 +8,11 @@ def recurse(subreddit, hot_list=[]):
     headers = {'User-Agent': 'PPP/0.0.1'}
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     res = requests.get(url, headers=headers, allow_redirects=False)
-    if res.status_code != 200 or res.status_code == 301:
+    if res.status_code != 200:
         return None
 
     js = res.json()
     posts = js.get('data').get('children')
-    # print(posts[len(hot_list)].get('data').get('title'))
-    # print("{} of {}".format(len(hot_list), len(posts)))
     hot_list.append(posts[len(hot_list)].get('data').get('title'))
     if len(hot_list) < len(posts):
         recurse(subreddit)
