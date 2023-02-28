@@ -30,7 +30,7 @@ def top_ten(subreddit):
     params = {'limit': 10}
     title = ""
 
-    url = "https://oauth.reddit.com/r/{}/top".format(subreddit)
+    url = "https://oauth.reddit.com/r/{}/top/?t=all".format(subreddit)
     for i in range(1):
         res = requests.get(url, headers=headers, params=params)
         if res.status_code != 200:
