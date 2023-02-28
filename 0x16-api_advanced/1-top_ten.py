@@ -7,8 +7,8 @@ def get_posts(response):
     """ Gets the posts """
     posts = []
 
-    for post in response.json()['data']['children']:
-        posts.append(post['data']['title'])
+    for post in response.json().get('data').get('children'):
+        posts.append(post.get('data').get('title'))
 
     return posts
 
@@ -30,10 +30,10 @@ def top_ten(subreddit):
     params = {'limit': 10}
     title = ""
 
-    url = "https://oauth.reddit.com/r/{}/top/?t=all".format(subreddit)
+    url = "https://oauth.reddit.com/r/{}/top/?t=now".format(subreddit)
     for i in range(1):
         res = requests.get(url, headers=headers, params=params)
-        if res.status_code != 200:
+        if res.status_code != 200 or res.status_code == 301:
             print("None")
             return
         posts = get_posts(res)
