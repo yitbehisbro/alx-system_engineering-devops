@@ -14,6 +14,8 @@ def recurse(subreddit, hot_list=[]):
     js = res.json()
     posts = js.get('data').get('children')
     hot_list.append(posts[len(hot_list)].get('data').get('title'))
+    if len(hot_list) == 0:
+        return None
     if len(hot_list) < len(posts):
         recurse(subreddit)
     return hot_list
