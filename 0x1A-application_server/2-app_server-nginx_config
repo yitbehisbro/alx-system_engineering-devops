@@ -1,0 +1,29 @@
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        location / {
+                root /data/web_static/releases/test/;
+        }
+        location /hbnb_static {
+                alias /data/web_static/current;
+        }
+        location /airbnb-onepage {
+                include proxy_params;
+                proxy_pass http://0.0.0.0:5000/airbnb-onepage;
+        }
+}
+
+server {
+     listen 443;
+     listen [::]:443;
+     server_name www.yitbe.tech;
+
+     root /var/www/www.yitbe.tech/html;
+
+     index index.html index.htm;
+
+     location / {
+          try_files $uri $uri/ =404;
+     }
+}
