@@ -1,0 +1,47 @@
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+	location / {
+                # root /data/web_static/releases/test/;
+                include proxy_params;
+                proxy_pass http://0.0.0.0:5003/2-hbnb;
+        }
+        location /2-hbnb {
+                include proxy_params;
+                proxy_pass http://0.0.0.0:5003/2-hbnb;
+        }
+        location /hbnb_static {
+                alias /data/web_static/current;
+        }
+        location /airbnb-onepage {
+                include proxy_params;
+                proxy_pass http://0.0.0.0:5000/airbnb-onepage;
+        }
+	location /airbnb-dynamic/number_odd_or_even/ {
+                include proxy_params;
+                proxy_pass http://0.0.0.0:5001/number_odd_or_even/;
+        }
+	location /api/ {
+                include proxy_params;
+                proxy_pass http://0.0.0.0:5002/api/v1/;
+        }
+	location /api/v1/ {
+                include proxy_params;
+                proxy_pass http://0.0.0.0:5002/api/v1/;
+        }
+}
+
+server {
+     listen 443;
+     listen [::]:443;
+     server_name www.yitbe.tech;
+
+     root /var/www/www.yitbe.tech/html;
+
+     index index.html index.htm;
+
+     location / {
+          try_files $uri $uri/ =404;
+     }
+}
