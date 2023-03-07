@@ -11,11 +11,11 @@ Group=ubuntu
 
 RuntimeDirectory=gunicorn
 WorkingDirectory=/home/ubuntu/AirBnB_clone_v4/
-ExecStartPre =/bin/mkdir /run/AirBnB_clone_v4
-ExecStartPre =/bin/chown -R ubuntu:ubuntu /run/AirBnB_clone_v4
+ExecStartPre =/bin/sudo mkdir -p /run/AirBnB_clone_v4
+ExecStartPre =/bin/sudo chown -R ubuntu:ubuntu /run/AirBnB_clone_v4
 StandardOutput=append:/tmp/airbnb-access.log
 StandardError=append:/tmp/airbnb-error.log
-ExecStart=/usr/bin/env gunicorn web_dynamic.2-hbnb:app -b 0.0.0.0:5003/2-hbnb/ --pid /run/AirBnB_clone_v4/AirBnB_clone_v4.pid
+ExecStart=/usr/bin/env gunicorn web_dynamic.2-hbnb:app -b 0.0.0.0:5003 --pid /run/AirBnB_clone_v4/AirBnB_clone_v4.pid
 ExecReload=/bin/kill -s HUP $MAINPID
 KillMode=mixed
 TimeoutStopSec=5
