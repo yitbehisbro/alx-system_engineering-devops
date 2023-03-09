@@ -5,14 +5,9 @@ After=network.target
 
 [Service]
 Type=notify
-
 User=ubuntu
 Group=ubuntu
-Environment="HBNB_MYSQL_USER=hbnb_dev"
-Environment="HBNB_MYSQL_PWD=hbnb_dev_pwd"
-Environment="HBNB_MYSQL_HOST=localhost"
-Environment="HBNB_MYSQL_DB=hbnb_dev_db"
-Environment="HBNB_TYPE_STORAGE=db"
+EnvironmentFile=/etc/systemd/system/gunicorn.service.d/override.conf
 RuntimeDirectory=gunicorn
 WorkingDirectory=/home/ubuntu/AirBnB_clone_v4/
 ExecStartPre =/bin/sudo mkdir -p /run/AirBnB_clone_v4
