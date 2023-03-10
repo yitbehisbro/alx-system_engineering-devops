@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Graceful reload of gunicorn
-# sudo service gunicorn start
+sudo service gunicorn start
 OLDPID=$(</run/AirBnB_clone_v4/AirBnB_clone_v4.pid)
 kill -USR2 "$OLDPID"
 sleep 1
@@ -21,4 +21,4 @@ echo "Success NEWPID = $NEWPID"
 kill -WINCH "$OLDPID"
 sleep 1
 kill -TERM "$OLDPID"
-# sudo service gunicorn start
+sudo service gunicorn start
